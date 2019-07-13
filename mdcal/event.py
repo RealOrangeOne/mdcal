@@ -1,10 +1,10 @@
-from pathlib import Path
+import datetime
 import hashlib
+from pathlib import Path
 
 from dateutil.parser import parse
-from markdown import Markdown
 from ics import Event as ICSEvent
-import datetime
+from markdown import Markdown
 
 
 class Event:
@@ -45,7 +45,7 @@ class Event:
             end=self.end_date,
             uid=self.id,
             created=self.path.stat().st_ctime,
-            description=self.content or None
+            description=self.content or None,
         )
         if self.is_all_day():
             ics_event.make_all_day()
