@@ -17,6 +17,9 @@ from .event import get_events_in_dir
 def main(input_dir, output_dir):
     input_dir = Path(input_dir)
     output_dir = Path(output_dir)
+
+    output_dir.mkdir(parents=True, exist_ok=True)
+
     calendar = Calendar(creator="mdcal")
     with click.progressbar(
         get_events_in_dir(input_dir), label="Generating events"
