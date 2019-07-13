@@ -4,4 +4,4 @@ set -e
 
 export PATH=env/bin:${PATH}
 
-mdcal example/ output/
+mdcal example/ output/ $@

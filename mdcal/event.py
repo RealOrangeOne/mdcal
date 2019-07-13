@@ -55,6 +55,16 @@ class Event:
             ics_event.make_all_day()
         return ics_event
 
+    def as_dict(self):
+        event_dict = {
+            "title": self.name,
+            "start": self.date.isoformat(),
+            "allDay": self.is_all_day(),
+        }
+        if self.end_date:
+            event_dict["end"] = self.end_date.isoformat()
+        return event_dict
+
 
 def get_events_in_dir(dir: Path):
     for event_file in dir.iterdir():
