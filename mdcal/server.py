@@ -1,7 +1,7 @@
 import http.server
 import os
-from pathlib import Path
 import webbrowser
+from pathlib import Path
 
 import click
 
