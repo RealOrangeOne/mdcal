@@ -5,7 +5,7 @@ from shutil import copytree, rmtree
 import click
 from ics import Calendar
 
-from mdcal import MODULE_DIR
+from mdcal import MODULE_DIR, __version__
 
 from .event import get_events_in_dir
 from .html_calendar import save_html_calendar
@@ -21,6 +21,7 @@ from .server import serve_output
     "output_dir", type=click.Path(file_okay=False, writable=True, resolve_path=True)
 )
 @click.option("--serve", is_flag=True)
+@click.version_option(__version__)
 def main(input_dir, output_dir, serve):
     input_dir = Path(input_dir)
     output_dir = Path(output_dir)
