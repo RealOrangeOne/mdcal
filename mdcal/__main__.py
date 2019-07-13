@@ -1,3 +1,4 @@
+import time
 from pathlib import Path
 from shutil import copytree, rmtree
 
@@ -23,6 +24,7 @@ from .server import serve_output
 def main(input_dir, output_dir, serve):
     input_dir = Path(input_dir)
     output_dir = Path(output_dir)
+    start_time = time.time()
 
     output_dir.mkdir(parents=True, exist_ok=True)
 
@@ -39,6 +41,8 @@ def main(input_dir, output_dir, serve):
 
     rmtree(str(output_dir.joinpath("static")), ignore_errors=True)
     copytree(str(MODULE_DIR.joinpath("static")), str(output_dir.joinpath("static")))
+
+    click.echo("Completed in {}s".format(round(time.time() - start_time, 3)))
 
     if serve:
         serve_output(output_dir)
