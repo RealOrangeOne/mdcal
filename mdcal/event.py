@@ -35,6 +35,10 @@ class Event:
         hasher.update(str(self.path).encode())
         return hasher.hexdigest()
 
+    @property
+    def created(self):
+        return self.path.stat().st_ctime
+
     def __str__(self):
         return "{}: {} @ {}".format(self.id, self.name, self.date)
 
@@ -44,8 +48,8 @@ class Event:
             begin=self.date,
             end=self.end_date,
             uid=self.id,
-            created=self.path.stat().st_ctime,
-            description=self.content or None,
+            created=self.created,
+            description=self.content,
         )
         if self.is_all_day():
             ics_event.make_all_day()
