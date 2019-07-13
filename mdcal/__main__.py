@@ -16,6 +16,7 @@ from ics import Calendar
 )
 def main(input_dir, output_dir):
     calendar = Calendar(creator="mdcal")
-    for event in get_events_in_dir(Path(input_dir)):
-        calendar.events.add(event.to_ics_event())
+    with click.progressbar(get_events_in_dir(Path(input_dir)), label="Generating events") as bar:
+        for event in bar:
+            calendar.events.add(event.to_ics_event())
     print(str(calendar))
