@@ -15,4 +15,4 @@ from .event import get_events_in_dir
 )
 def main(input_dir, output_dir):
     for event in get_events_in_dir(Path(input_dir)):
-        print(event)
+        print(event.to_ics_event())

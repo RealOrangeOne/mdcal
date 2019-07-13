@@ -3,6 +3,8 @@ import hashlib
 
 from dateutil.parser import parse
 from markdown import Markdown
+from ics import Event as ICSEvent
+import datetime
 
 
 class Event:
@@ -15,6 +17,19 @@ class Event:
         self.date = parse(self.metadata.pop("date")[0])
 
     @property
+    def end_date(self):
+        if "end_date" in self.metadata:
+            return parse(self.metadata.pop("end_date")[0])
+        return None
+
+    def is_all_day(self):
+        if self.end_date is None and self.date.time() == datetime.time(0, 0, 0):
+            return True
+        if self.end_date == self.date:
+            return True
+        return False
+
+    @property
     def id(self):
         hasher = hashlib.sha1()
         hasher.update(str(self.path).encode())
@@ -22,6 +37,19 @@ class Event:
 
     def __str__(self):
         return "{}: {} @ {}".format(self.id, self.name, self.date)
+
+    def to_ics_event(self):
+        ics_event = ICSEvent(
+            name=self.name,
+            begin=self.date,
+            end=self.end_date,
+            uid=self.id,
+            created=self.path.stat().st_ctime,
+            description=self.content or None
+        )
+        if self.is_all_day():
+            ics_event.make_all_day()
+        return ics_event
 
 
 def get_events_in_dir(dir: Path):
