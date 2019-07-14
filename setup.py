@@ -14,6 +14,7 @@ setup(
         "ics==0.4",
         "markdown==3.1.1",
         "jinja2==2.10.1",
+        "ruamel.yaml==0.15.99",
     ],
     project_urls={"GitHub: Issues": "https://github.com/realorangeone/mdcal/issues"},
     entry_points={"console_scripts": ["mdcal=mdcal.__main__:main"]},

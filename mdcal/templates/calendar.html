@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Calendar</title>
+    <title>{{ calendar.name }}</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/core/main.css" integrity="sha256-nJK+Jim06EmZazdCbGddx5ixnqfXA13Wlw3JizKK1GU=" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/daygrid/main.min.css" integrity="sha256-AVsv7CEpB2Y1F7ZjQf0WI8SaEDCycSk4vnDRt0L2MNQ=" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/bootstrap/main.min.css" integrity="sha256-auNBxJ+1OpvUJfYRsPihqLzJFUM9D3gpb8nOh5v0LiM=" crossorigin="anonymous" />
@@ -12,8 +12,8 @@
 <body>
     <div class="jumbotron jumbotron-fluid">
             <div class="container">
-              <h1 class="display-4">Calendar</h1>
-              <p class="lead">Here are you events.</p>
+              <h1 class="display-4"><a href="index.ics" title="Add to your calendar"><i class="fas fa-calendar-plus"></i></a> {{ calendar.name }}</h1>
+              <p class="lead">{{ calendar.description }}</p>
             </div>
           </div>
     <div class="container">
