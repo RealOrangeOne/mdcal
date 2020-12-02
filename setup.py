@@ -7,7 +7,7 @@ setup(
     author="Jake Howard",
     description="Generate a calendar feed from a series of markdown files ",
     packages=["mdcal"],
-    python_requires=">=3.5",
+    python_requires=">=3.6",
     install_requires=[
         "click",
         "python-dateutil",
