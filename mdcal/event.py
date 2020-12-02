@@ -12,7 +12,7 @@ class Event:
         self.path = path
         md = Markdown(extensions=["meta"])
         self.content = md.convert(path.read_text())
-        self.metadata = md.Meta  # type: dict
+        self.metadata = md.Meta  # type: ignore
         self.name = self.metadata.pop("name")[0]
         self.date = parse(self.metadata.pop("date")[0])
 
